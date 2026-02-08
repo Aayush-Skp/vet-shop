@@ -264,9 +264,19 @@ h3 { font-size: 1.5rem; }
   align-items: center;
 }
 
+/* Mobile: image below content */
+@media (max-width: 767px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+  }
+  .hero__image {
+    order: 1;
+  }
+}
+
 @media (min-width: 768px) {
   .hero .container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.2fr;
   }
 }
 
@@ -303,17 +313,112 @@ h3 { font-size: 1.5rem; }
 }
 
 .hero__image {
+  position: relative;
   background: var(--color-bg-light);
   border-radius: var(--border-radius);
-  min-height: 280px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-muted);
+  box-shadow: 0 4px 20px rgba(13, 71, 161, 0.12);
 }
 
-.hero__image img {
+/* Responsive heights: shop image scales with viewport */
+.hero__image {
+  min-height: 240px;
+}
+
+@media (min-width: 480px) {
+  .hero__image {
+    min-height: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero__image {
+    min-height: 400px;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero__image {
+    min-height: 480px;
+  }
+}
+
+/* Hero Slider */
+.hero__slider {
+  position: absolute;
+  inset: 0;
   border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.hero__slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.hero__slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__slider-prev,
+.hero__slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.hero__slider-prev:hover,
+.hero__slider-next:hover {
+  background: var(--color-white);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.hero__slider-prev svg,
+.hero__slider-next svg {
+  width: 24px;
+  height: 24px;
+}
+
+.hero__slider-prev {
+  left: 12px;
+}
+
+.hero__slider-next {
+  right: 12px;
 }
 
 /* ========== WHY CHOOSE US ========== */

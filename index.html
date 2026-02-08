@@ -47,16 +47,14 @@
         </div>
       </div>
       <div class="hero__image">
-        <img src="assets/images/shop.jpeg" alt="Happy pet at Curavet"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div
-          style="display:none; flex-direction:column; align-items:center; justify-content:center; padding: 2rem; text-align: center;">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 2c-2 0-4 2-4 4v2c0 2 2 4 4 4s4-2 4-4V6c0-2-2-4-4-4z" />
-            <path d="M18 10c0-2-1-4-3-5-1 2-2 4-2 6 0 3 2 5 5 5h2" />
-            <path d="M6 10c0-2 1-4 3-5 1 2 2 4 2 6 0 3-2 5-5 5H4" />
-          </svg>
-          <p>Pet care illustration</p>
+        <div class="hero__slider">
+          <div class="hero__slider-track"></div>
+          <button type="button" class="hero__slider-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="hero__slider-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -177,6 +175,7 @@
   <script src="js/icons.js"></script>
   <script src="controllers/home.controller.js"></script>
   <script src="controllers/ui.controller.js"></script>
+  <script src="js/hero-slider.js"></script>
 </body>
 
 </html>
