@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CuravetPvt. Ltd.
 
-## Getting Started
+Classic, professional static website for Curavet Pet Clinic in Butwal.
 
-First, run the development server:
+## Architecture (MVC for Static Site)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+/models/          # Data layer
+/views/components/ # Reusable HTML components
+/controllers/     # Logic & rendering
+/css/             # Design system
+/js/              # Utilities (icons)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Serve the static site:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run serve:static
+```
 
-## Learn More
+Then open [http://localhost:3000](http://localhost:3000)
 
-To learn more about Next.js, take a look at the following resources:
+## Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Models**: `clinic.model.js`, `services.model.js`, `testimonials.model.js`, `navigation.model.js`, `why-choose-us.model.js`
+- **Views**: Component HTML in `views/components/`
+- **Controllers**: `home.controller.js` (data → DOM), `ui.controller.js` (menu, scroll, animations)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Design System
 
-## Deploy on Vercel
+- **Colors**: Primary Blue `#0D47A1`, Secondary `#1976D2`, White, Light Gray `#F4F6F8`
+- **Fonts**: Montserrat (headings), Open Sans (body)
+- **Style**: Clean, medical-grade, trustworthy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Future Ready
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed to easily add:
+
+- Appointment booking
+- Admin dashboard
+- WhatsApp integration
+- Blog / pet care tips
+- Backend API
+
+## Assets
+
+Add `assets/images/hero-pet.jpg` for the hero section image. A placeholder displays when the image is missing.
