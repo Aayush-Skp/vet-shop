@@ -10,7 +10,10 @@
     const navEl = document.querySelector('[data-nav-links]');
     if (!logoEl || !navEl) return;
 
-    logoEl.textContent = navigationModel.logo.text;
+    const logoImg = logoEl.querySelector('.navbar__logo-img');
+    if (logoImg) logoImg.alt = navigationModel.logo.alt;
+    const logoText = logoEl.querySelector('[data-nav-logo-text]');
+    if (logoText) logoText.textContent = navigationModel.logo.text;
     navEl.innerHTML = navigationModel.items
       .map(
         (item) =>

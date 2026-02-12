@@ -30,7 +30,7 @@
   --space-2xl: 4rem;
 
   /* Layout */
-  --navbar-height: 60px; /* Matches .navbar .container padding + content height */
+  --navbar-height: 64px; /* Matches .navbar .container padding + logo height */
   --max-width: 1200px;
   --border-radius: 12px;
   --border-radius-lg: 16px;
@@ -236,16 +236,17 @@ h3 { font-size: 1.35rem; }
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-soft);
+  background: transparent;
+  box-shadow: none;
   z-index: 1000;
-  transition: background var(--transition-base), box-shadow var(--transition-base);
+  transition: background var(--transition-base), box-shadow var(--transition-base),
+    backdrop-filter var(--transition-base);
 }
 
 .navbar.navbar--scrolled {
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--shadow-medium);
 }
 
@@ -253,20 +254,33 @@ h3 { font-size: 1.35rem; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-sm) var(--space-md);
+  padding: 0.5rem var(--space-md);
 }
 
 .navbar__logo {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: var(--color-primary);
-  letter-spacing: 0.05em;
-  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity var(--transition-fast);
 }
 
 .navbar__logo:hover {
-  color: var(--color-primary-dark);
+  opacity: 0.9;
+}
+
+.navbar__logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.navbar__logo-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--color-primary);
+  letter-spacing: 0.05em;
 }
 
 .navbar__nav {
