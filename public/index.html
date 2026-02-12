@@ -41,7 +41,7 @@
         <p class="subheading" data-hero-subheading>Professional, affordable care for your pet's health and wellbeing.
         </p>
         <div class="hero__cta">
-          <a href="#contact" class="btn btn--primary" data-hero-cta-primary>Book a Visit</a>
+          <a href="#" class="btn btn--primary" data-hero-cta-primary>Book a Visit</a>
           <a href="tel:9841527272" class="btn btn--outline-primary" data-hero-cta-phone>Call: 9841527272</a>
         </div>
         <div class="hero__info">
@@ -83,7 +83,7 @@
       </div>
       <div class="services__grid" data-services-cards></div>
       <div class="services__cta">
-        <a href="#contact" class="btn btn--primary" data-services-cta>View All Services</a>
+        <a href="#" class="btn btn--primary" data-services-cta>View All Services</a>
       </div>
     </div>
   </section>
@@ -198,6 +198,99 @@
     </div>
   </footer>
 
+  <!-- ══════════ Book a Visit Modal ══════════ -->
+  <div class="booking-modal" id="bookingModal">
+    <div class="booking-modal__backdrop" data-booking-backdrop></div>
+    <div class="booking-modal__container">
+      <div class="booking-modal__content">
+        <!-- Header -->
+        <div class="booking-modal__header">
+          <div>
+            <h3 class="booking-modal__title">Book a Visit</h3>
+            <p class="booking-modal__subtitle">Schedule an appointment at Curavet</p>
+          </div>
+          <button class="booking-modal__close-btn" data-booking-close aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Message -->
+        <div id="bookingMessage" class="booking-modal__message" hidden></div>
+
+        <!-- Form -->
+        <form id="bookingForm" class="booking-form" novalidate>
+          <!-- Name -->
+          <div class="booking-form__group">
+            <label class="booking-form__label" for="bk_name">Your Name <span class="booking-form__required">*</span></label>
+            <input class="booking-form__input" type="text" id="bk_name" name="bk_name" placeholder="Full name" required />
+          </div>
+
+          <!-- Phone -->
+          <div class="booking-form__group">
+            <label class="booking-form__label" for="bk_phone">Phone Number <span class="booking-form__required">*</span></label>
+            <input class="booking-form__input" type="tel" id="bk_phone" name="bk_phone" placeholder="98XXXXXXXX" required />
+          </div>
+
+          <!-- Email -->
+          <div class="booking-form__group">
+            <label class="booking-form__label" for="bk_email">Email <span class="booking-form__optional">(Optional)</span></label>
+            <input class="booking-form__input" type="email" id="bk_email" name="bk_email" placeholder="email@example.com" />
+          </div>
+
+          <!-- Purpose -->
+          <div class="booking-form__group">
+            <label class="booking-form__label" for="bk_purpose">Purpose <span class="booking-form__required">*</span></label>
+            <textarea class="booking-form__input booking-form__textarea" id="bk_purpose" name="bk_purpose" rows="2" placeholder="Briefly describe why you want to visit..." required></textarea>
+          </div>
+
+          <!-- Preferred Date & Time -->
+          <div class="booking-form__row">
+            <div class="booking-form__group">
+              <label class="booking-form__label" for="bk_date">Preferred Date <span class="booking-form__optional">(Optional)</span></label>
+              <input class="booking-form__input" type="date" id="bk_date" name="bk_date" />
+            </div>
+            <div class="booking-form__group">
+              <label class="booking-form__label" for="bk_time">Preferred Time <span class="booking-form__optional">(Optional)</span></label>
+              <input class="booking-form__input" type="time" id="bk_time" name="bk_time" />
+            </div>
+          </div>
+
+          <!-- Visit Type -->
+          <div class="booking-form__group">
+            <label class="booking-form__label" for="bk_visit_type">Type of Visit <span class="booking-form__optional">(Optional)</span></label>
+            <select class="booking-form__input booking-form__select" id="bk_visit_type" name="bk_visit_type">
+              <option value="">— Select visit type —</option>
+              <option value="General Check-up">General Check-up</option>
+              <option value="Vaccination">Vaccination</option>
+              <option value="Surgery Consultation">Surgery Consultation</option>
+              <option value="Emergency">Emergency</option>
+              <option value="Grooming">Grooming</option>
+              <option value="Dental Care">Dental Care</option>
+              <option value="Nutrition Consultation">Nutrition Consultation</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Emergency Checkbox -->
+          <div class="booking-form__group">
+            <label class="booking-form__checkbox-label">
+              <input type="checkbox" name="bk_emergency" class="booking-form__checkbox" />
+              <span class="booking-form__checkbox-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+              </span>
+              <span>This is an <strong>emergency</strong> case</span>
+            </label>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn--primary booking-form__submit" data-booking-submit>
+            Submit Booking
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts: Models first, then icons, then controllers -->
   <script src="/models/clinic.model.js"></script>
   <script src="/models/navigation.model.js"></script>
@@ -208,6 +301,7 @@
   <script src="/js/icons.js"></script>
   <script src="/controllers/home.controller.js"></script>
   <script src="/controllers/products.controller.js"></script>
+  <script src="/controllers/booking.controller.js"></script>
   <script src="/controllers/ui.controller.js"></script>
   <script src="/js/hero-slider.js"></script>
 </body>
