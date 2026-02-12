@@ -35,33 +35,63 @@
 
   <!-- Hero -->
   <section class="hero" id="home">
-    <div class="container">
+    <!-- Background decorative shapes -->
+    <div class="hero__deco hero__deco--1"></div>
+    <div class="hero__deco hero__deco--2"></div>
+    <div class="hero__deco hero__deco--3"></div>
+
+    <div class="hero__inner">
+      <!-- Left: Text content -->
       <div class="hero__content">
+        <span class="hero__badge">Trusted Veterinary Care</span>
         <h1 data-hero-headline>Compassionate Veterinary Care in Butwal</h1>
-        <p class="subheading" data-hero-subheading>Professional, affordable care for your pet's health and wellbeing.
-        </p>
+        <p class="subheading" data-hero-subheading>Professional, affordable care for your pet's health and wellbeing.</p>
         <div class="hero__cta">
-          <a href="#" class="btn btn--primary" data-hero-cta-primary>Book a Visit</a>
-          <a href="tel:9841527272" class="btn btn--outline-primary" data-hero-cta-phone>Call: 9841527272</a>
+          <a href="#" class="btn btn--primary btn--lg" data-hero-cta-primary>Book a Visit</a>
+          <a href="tel:9841527272" class="btn btn--outline-primary btn--lg" data-hero-cta-phone>Call: 9841527272</a>
         </div>
         <div class="hero__info">
-          <span>📍 <span data-hero-address>Butwal-11, Kalikanagar (Buddhapath)</span></span>
-          <span>⏰ <span data-hero-hours>8:00 AM – 7:00 PM</span></span>
+          <span><span class="hero__info-icon">📍</span> <span data-hero-address>Butwal-11, Kalikanagar (Buddhapath)</span></span>
+          <span><span class="hero__info-icon">⏰</span> <span data-hero-hours>8:00 AM – 7:00 PM</span></span>
+        </div>
+        <!-- Trust strip -->
+        <div class="hero__trust">
+          <div class="hero__trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            <span>Licensed Vets</span>
+          </div>
+          <div class="hero__trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Safe &amp; Hygienic</span>
+          </div>
+          <div class="hero__trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+            <span>Compassionate Care</span>
+          </div>
         </div>
       </div>
-      <div class="hero__image">
-        <div class="hero__slider">
-          <div class="hero__slider-track"></div>
-          <button type="button" class="hero__slider-prev" aria-label="Previous image">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <button type="button" class="hero__slider-next" aria-label="Next image">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
+
+      <!-- Right: Full-bleed image -->
+      <div class="hero__visual">
+        <div class="hero__image">
+          <div class="hero__slider">
+            <div class="hero__slider-track"></div>
+            <button type="button" class="hero__slider-prev" aria-label="Previous image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="hero__slider-next" aria-label="Next image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+        <!-- Floating stat cards -->
+        <div class="hero__float hero__float--top">
+          <span class="hero__float-number">500+</span>
+          <span class="hero__float-label">Happy Pets</span>
+        </div>
+        <div class="hero__float hero__float--bottom">
+          <span class="hero__float-number">24/7</span>
+          <span class="hero__float-label">Emergency Care</span>
         </div>
       </div>
     </div>
