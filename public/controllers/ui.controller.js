@@ -30,6 +30,9 @@
   }
 
   function initSmoothScroll() {
+    const navbar = document.querySelector('.navbar');
+    const getOffset = () => navbar ? navbar.offsetHeight : 60;
+
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -37,7 +40,8 @@
         const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({ top: targetTop - getOffset(), behavior: 'smooth' });
         }
       });
     });
@@ -53,10 +57,10 @@
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
 
-    document.querySelectorAll('.section, .why-card, .service-card, .testimonial-card').forEach((el) => {
+    document.querySelectorAll('.section, .section-title, .why-card, .service-card, .testimonial-card, .about__content').forEach((el) => {
       observer.observe(el);
     });
   }
@@ -65,15 +69,13 @@
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
 
-    let lastScroll = 0;
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
-      if (currentScroll > 100) {
-        navbar.style.boxShadow = '0 2px 12px rgba(13, 71, 161, 0.12)';
+      if (currentScroll > 80) {
+        navbar.classList.add('navbar--scrolled');
       } else {
-        navbar.style.boxShadow = '0 2px 8px rgba(13, 71, 161, 0.08)';
+        navbar.classList.remove('navbar--scrolled');
       }
-      lastScroll = currentScroll;
     });
   }
 
