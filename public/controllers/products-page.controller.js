@@ -20,7 +20,7 @@
   }
 
   function renderProductCard(product) {
-    const imgSrc = product.image.startsWith('/') ? product.image : '/' + product.image;
+    const imgSrc = product.image.startsWith('http') || product.image.startsWith('/') ? product.image : '/' + product.image;
     const hasDiscount = product.discount > 0;
     const stars = '★'.repeat(Math.floor(product.rating || 0)) + (product.rating % 1 >= 0.5 ? '½' : '');
     return `

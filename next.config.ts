@@ -1,7 +1,25 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
+  },
+  async redirects() {
+    return [
+      { source: "/index.html", destination: "/", permanent: true },
+    ];
+  },
+  async rewrites() {
+    return [
+      { source: "/", destination: "/index.html" },
+      { source: "/products", destination: "/products.html" },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -875,12 +875,19 @@ h3 { font-size: 1.35rem; }
   right: var(--space-sm);
 }
 
+.products__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
 .products__scroll-hint {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: var(--space-xs);
-  margin-top: var(--space-md);
   font-size: 0.9rem;
   color: var(--color-text-muted);
 }
@@ -888,6 +895,10 @@ h3 { font-size: 1.35rem; }
 .products__scroll-hint svg {
   width: 20px;
   height: 20px;
+}
+
+.products__view-all {
+  min-width: 180px;
 }
 
 @media (min-width: 768px) {
