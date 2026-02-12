@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse all pet products at Curavet - Quality pet food, accessories, and medications.">
+  <title>Our Products | Curavet Pet Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="page-products">
+  <!-- Navbar -->
+  <nav class="navbar navbar--scrolled" id="navbar" role="navigation">
+    <div class="container">
+      <a href="/index.html" class="navbar__logo" data-nav-logo>
+        <img src="/assets/logo.png" alt="Curavet Pet Clinic Logo" class="navbar__logo-img" />
+        <span class="navbar__logo-text">CURAVET</span>
+      </a>
+      <ul class="navbar__nav" data-nav-links role="menubar"></ul>
+      <button class="navbar__toggle" aria-label="Toggle menu" data-nav-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">Our Products</h1>
+      <p class="page-header__subtitle">Quality pet supplies for your furry friends</p>
+    </div>
+  </header>
+
+  <!-- Products Section with Search -->
+  <main class="section products-page">
+    <div class="container">
+      <div class="products-page__toolbar">
+        <div class="products-page__search-wrap">
+          <svg class="products-page__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="search" class="products-page__search" placeholder="Search products by name or category..."
+            aria-label="Search products" data-products-search />
+        </div>
+        <p class="products-page__count" data-products-count>Showing all products</p>
+      </div>
+
+      <div class="products-page__grid" data-products-grid></div>
+
+      <div class="products-page__empty" data-products-empty hidden>
+        <p>No products match your search. Try a different term.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__section">
+          <h4>Clinic Information</h4>
+          <p data-footer-name>Curavet Pvt. Ltd.</p>
+          <p data-footer-address>Butwal-11, Kalikanagar (Buddhapath), Butwal</p>
+        </div>
+        <div class="footer__section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/index.html#services">Veterinary Care</a></li>
+            <li><a href="/index.html#services">Pet Wellness</a></li>
+            <li><a href="/index.html#services">Grooming</a></li>
+            <li><a href="/index.html#services">Accessories & Food</a></li>
+            <li><a href="/products.html">Products</a></li>
+          </ul>
+        </div>
+        <div class="footer__section">
+          <h4>Opening Hours</h4>
+          <p data-footer-hours>8:00 AM – 7:00 PM</p>
+        </div>
+        <div class="footer__section">
+          <h4>Contact</h4>
+          <p><a href="tel:9841527272" data-footer-phone>9841527272</a></p>
+          <div class="footer__social">
+            <a href="https://www.facebook.com/share/17pubJVSjy/" target="_blank" rel="noopener noreferrer"
+              aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">i</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__map">
+        <iframe src="https://www.google.com/maps?q=27.682528,83.463626&output=embed" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Curavet Pet Clinic location" data-map-embed></iframe>
+      </div>
+      <div class="footer__bottom">
+        <p>© Curavet Pvt. Ltd. – All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/models/clinic.model.js"></script>
+  <script src="/models/navigation.model.js"></script>
+  <script src="/models/products.model.js"></script>
+  <script src="/controllers/products-page.controller.js"></script>
+  <script src="/controllers/ui.controller.js"></script>
+</body>
+
+</html>

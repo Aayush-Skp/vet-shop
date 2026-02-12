@@ -53,10 +53,14 @@
         <div class="hero__slider">
           <div class="hero__slider-track"></div>
           <button type="button" class="hero__slider-prev" aria-label="Previous image">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
           </button>
           <button type="button" class="hero__slider-next" aria-label="Next image">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
           </button>
         </div>
       </div>
@@ -74,6 +78,41 @@
     </div>
   </section>
 
+
+
+  <!-- Products -->
+  <section class="section products section--light" id="products">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Products</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="products__carousel-wrapper">
+        <button type="button" class="products__nav products__nav--prev" aria-label="Previous products">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <div class="products__carousel" data-products-carousel>
+          <div class="products__track" data-products-track></div>
+        </div>
+        <button type="button" class="products__nav products__nav--next" aria-label="Next products">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+      <div class="products__footer">
+        <span class="products__scroll-hint" data-products-scroll-hint>
+          <span>Scroll to browse</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17l5-5-5-5" />
+          </svg>
+        </span>
+        <a href="products.html" class="btn btn--primary products__view-all">View All Products</a>
+      </div>
+    </div>
+  </section>
   <!-- Services -->
   <section class="section services" id="services">
     <div class="container">
@@ -143,6 +182,7 @@
             <li><a href="#services">Pet Wellness</a></li>
             <li><a href="#services">Grooming</a></li>
             <li><a href="#services">Accessories & Food</a></li>
+            <li><a href="#products">Products</a></li>
           </ul>
         </div>
         <div class="footer__section">
@@ -175,8 +215,10 @@
   <script src="models/services.model.js"></script>
   <script src="models/testimonials.model.js"></script>
   <script src="models/why-choose-us.model.js"></script>
+  <script src="models/products.model.js"></script>
   <script src="js/icons.js"></script>
   <script src="controllers/home.controller.js"></script>
+  <script src="controllers/products.controller.js"></script>
   <script src="controllers/ui.controller.js"></script>
   <script src="js/hero-slider.js"></script>
 </body>

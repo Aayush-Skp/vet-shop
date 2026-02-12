@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Premium Dog Food - Adult",
+      "image": "assets/images/dog.jpg",
+      "price": 1850,
+      "originalPrice": 2200,
+      "discount": 16,
+      "rating": 4.5,
+      "category": "Pet Food"
+    },
+    {
+      "id": "prod-002",
+      "name": "Anti-Tick Collar",
+      "image": "assets/images/goat.jpg",
+      "price": 450,
+      "originalPrice": 500,
+      "discount": 10,
+      "rating": 4.2,
+      "category": "Accessories"
+    },
+    {
+      "id": "prod-003",
+      "name": "Veterinary Milk Powder",
+      "image": "assets/images/cow.jpg",
+      "price": 1200,
+      "originalPrice": 1200,
+      "discount": 0,
+      "rating": 4.8,
+      "category": "Nutrition"
+    },
+    {
+      "id": "prod-004",
+      "name": "Pet Shampoo - Gentle",
+      "image": "assets/images/shop.jpeg",
+      "price": 650,
+      "originalPrice": 750,
+      "discount": 13,
+      "rating": 4.3,
+      "category": "Grooming"
+    },
+    {
+      "id": "prod-005",
+      "name": "Deworming Tablets",
+      "image": "assets/images/dog.jpg",
+      "price": 280,
+      "originalPrice": 350,
+      "discount": 20,
+      "rating": 4.6,
+      "category": "Medications"
+    },
+    {
+      "id": "prod-006",
+      "name": "Chew Toys Pack",
+      "image": "assets/images/goat.jpg",
+      "price": 890,
+      "originalPrice": 990,
+      "discount": 10,
+      "rating": 4.0,
+      "category": "Accessories"
+    },
+    {
+      "id": "prod-007",
+      "name": "Vitamin Supplements",
+      "image": "assets/images/cow.jpg",
+      "price": 1450,
+      "originalPrice": 1600,
+      "discount": 9,
+      "rating": 4.7,
+      "category": "Nutrition"
+    }
+  ]
+}

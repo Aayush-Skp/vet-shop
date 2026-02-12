@@ -47,13 +47,15 @@
     });
   }
 
+  let scrollObserver;
+
   function initScrollAnimations() {
-    const observer = new IntersectionObserver(
+    scrollObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-in');
-            observer.unobserve(entry.target);
+            scrollObserver.unobserve(entry.target);
           }
         });
       },
@@ -61,9 +63,15 @@
     );
 
     document.querySelectorAll('.section, .section-title, .why-card, .service-card, .testimonial-card, .about__content').forEach((el) => {
-      observer.observe(el);
+      scrollObserver.observe(el);
     });
   }
+
+  window.observeProductCards = function () {
+    if (scrollObserver) {
+      document.querySelectorAll('.product-card').forEach((el) => scrollObserver.observe(el));
+    }
+  };
 
   function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
