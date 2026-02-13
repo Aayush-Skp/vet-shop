@@ -1,7 +1,3 @@
-/**
- * Cloudinary Configuration - Server-only
- * Used in API routes for image upload
- */
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
