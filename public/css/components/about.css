@@ -1,0 +1,20 @@
+/* ========== ABOUT ========== */
+.about__content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about__content p {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+  line-height: 1.8;
+}
+
+.about__divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  margin: var(--space-lg) 0;
+  border-radius: 2px;
+}

@@ -1,18 +1,22 @@
 /**
  * Featured Images API Route
- * GET    /api/featured-images        - Fetch all featured images from Firestore
- * POST   /api/featured-images        - Upload image to Cloudinary only (returns URL)
- * DELETE /api/featured-images        - Delete image from Cloudinary only
+ * GET    /api/featured-images - Fetch all featured images from Firestore
+ * POST   /api/featured-images - Upload image to Cloudinary only (returns URL)
+ * DELETE /api/featured-images - Delete image from Cloudinary only
  *
- * NOTE: Firestore read/write is handled client-side (dashboard component)
- * because Firestore security rules require authenticated user context,
- * which only exists in the browser where Firebase Auth runs.
+ * NOTE: Firestore read/write for featured_images is handled client-side
+ * (dashboard component) because Firestore security rules require
+ * authenticated user context, which only exists in the browser.
  * The server-side GET works because rules allow public reads.
  */
 import { NextResponse } from "next/server";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import cloudinary from "@/lib/cloudinary";
+import {
+  uploadImageToCloudinary,
+  deleteImageFromCloudinary,
+  UploadError,
+} from "@/lib/cloudinary-upload";
 
 export const dynamic = "force-dynamic";
 
@@ -66,57 +70,22 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!file.type.startsWith("image/")) {
-      return NextResponse.json(
-        { error: "File must be an image" },
-        { status: 400 }
-      );
-    }
-
-    if (file.size > 10 * 1024 * 1024) {
-      return NextResponse.json(
-        { error: "Image must be less than 10MB" },
-        { status: 400 }
-      );
-    }
-
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
-    // Upload to Cloudinary (hero images — high quality, wide)
-    const result = await new Promise<Record<string, unknown>>(
-      (resolve, reject) => {
-        const uploadStream = cloudinary.uploader.upload_stream(
-          {
-            folder: "curavet/hero",
-            resource_type: "image",
-            transformation: [
-              {
-                width: 1920,
-                height: 1080,
-                crop: "limit",
-                quality: "auto:best",
-                format: "auto",
-              },
-            ],
-          },
-          (error, result) => {
-            if (error) reject(error);
-            else resolve(result as Record<string, unknown>);
-          }
-        );
-        uploadStream.end(buffer);
-      }
-    );
-
-    // Return Cloudinary data — Firestore write happens on the client
-    return NextResponse.json({
-      url: result.secure_url,
-      publicId: result.public_id,
-      width: result.width,
-      height: result.height,
+    const result = await uploadImageToCloudinary(file, {
+      folder: "curavet/hero",
+      maxWidth: 1920,
+      maxHeight: 1080,
+      maxSizeMB: 10,
+      quality: "auto:best",
     });
+
+    return NextResponse.json(result);
   } catch (error) {
+    if (error instanceof UploadError) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: error.status }
+      );
+    }
     console.error("Featured image upload error:", error);
     return NextResponse.json(
       { error: "Failed to upload image" },
@@ -131,11 +100,7 @@ export async function DELETE(request: Request) {
     const { publicId } = await request.json();
 
     if (publicId) {
-      try {
-        await cloudinary.uploader.destroy(publicId);
-      } catch (cloudinaryErr) {
-        console.warn("Cloudinary delete failed:", cloudinaryErr);
-      }
+      await deleteImageFromCloudinary(publicId);
     }
 
     return NextResponse.json({ success: true });
