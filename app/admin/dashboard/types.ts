@@ -13,6 +13,10 @@ export interface Product {
   rating: number;
   category: string;
   inStock: boolean;
+  onSale?: boolean;
+  highlight?: string;
+  disclaimer?: string;
+  wishlist?: number;
   createdAt?: unknown;
   updatedAt?: unknown;
 }
@@ -25,6 +29,9 @@ export interface ProductFormData {
   rating: string;
   category: string;
   inStock: boolean;
+  onSale: boolean;
+  highlight: string;
+  disclaimer: string;
 }
 
 export interface Booking {

@@ -12,7 +12,7 @@ interface ProductsTabProps {
   seedProducts: () => void;
   openAddForm: () => void;
   openEditForm: (p: Product) => void;
-  setDetailProduct: (p: Product) => void;
+  viewProductDetail: (p: Product) => void;
   setDeleteTarget: (p: Product) => void;
 }
 
@@ -26,7 +26,7 @@ export default function ProductsTab({
   seedProducts,
   openAddForm,
   openEditForm,
-  setDetailProduct,
+  viewProductDetail,
   setDeleteTarget,
 }: ProductsTabProps) {
   return (
@@ -110,14 +110,29 @@ export default function ProductsTab({
                   <tr key={product.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0">
+                        <div className="relative w-12 h-12 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0">
                           {product.image ? (
                             <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">No img</div>
                           )}
+                          {!product.inStock && (
+                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                              <span className="text-white text-[8px] font-bold uppercase leading-none">Sold Out</span>
+                            </div>
+                          )}
                         </div>
-                        <span className="font-medium text-gray-900 text-sm">{product.name}</span>
+                        <div className="min-w-0">
+                          <span className="font-medium text-gray-900 text-sm block truncate">{product.name}</span>
+                          <div className="flex items-center gap-1 mt-0.5">
+                            {product.onSale && (
+                              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-orange-600">SALE</span>
+                            )}
+                            {!product.inStock && (
+                              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-red-100 text-red-600">OUT OF STOCK</span>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 hidden md:table-cell">
@@ -138,7 +153,7 @@ export default function ProductsTab({
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-1">
-                        <button onClick={() => setDetailProduct(product)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="View">
+                        <button onClick={() => viewProductDetail(product)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="View">
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                         </button>
                         <button onClick={() => openEditForm(product)} className="p-2 text-gray-400 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors" title="Edit">

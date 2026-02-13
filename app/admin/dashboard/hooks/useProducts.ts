@@ -4,6 +4,7 @@ import { useState, useCallback, useRef } from "react";
 import {
   collection,
   getDocs,
+  getDoc,
   addDoc,
   updateDoc,
   deleteDoc,
@@ -78,6 +79,9 @@ export function useProducts(showToast: (msg: string, type: "success" | "error") 
       rating: String(product.rating),
       category: product.category,
       inStock: product.inStock ?? true,
+      onSale: product.onSale ?? false,
+      highlight: product.highlight || "",
+      disclaimer: product.disclaimer || "",
     });
     setImageFile(null);
     setImagePreview(product.image || "");
@@ -158,7 +162,7 @@ export function useProducts(showToast: (msg: string, type: "success" | "error") 
         originalPrice > price
           ? Math.round(((originalPrice - price) / originalPrice) * 100)
           : 0;
-      const productData = {
+      const productData: Record<string, unknown> = {
         name: formData.name.trim(),
         description: formData.description.trim(),
         image: imageUrl,
@@ -168,6 +172,9 @@ export function useProducts(showToast: (msg: string, type: "success" | "error") 
         rating: Number(formData.rating) || 0,
         category: formData.category,
         inStock: formData.inStock,
+        onSale: formData.onSale,
+        highlight: formData.highlight.trim(),
+        disclaimer: formData.disclaimer.trim(),
         updatedAt: serverTimestamp(),
       };
       if (editingProduct) {
@@ -176,6 +183,7 @@ export function useProducts(showToast: (msg: string, type: "success" | "error") 
       } else {
         await addDoc(collection(db, "products"), {
           ...productData,
+          wishlist: 0,
           createdAt: serverTimestamp(),
         });
         showToast("Product added successfully", "success");
@@ -229,6 +237,10 @@ export function useProducts(showToast: (msg: string, type: "success" | "error") 
           rating: product.rating || 0,
           category: product.category || "Uncategorized",
           inStock: true,
+          onSale: false,
+          highlight: "",
+          disclaimer: "",
+          wishlist: 0,
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),
         });
@@ -253,6 +265,24 @@ export function useProducts(showToast: (msg: string, type: "success" | "error") 
       p.description?.toLowerCase().includes(q)
     );
   });
+
+  // ─── View detail (re-fetch latest from Firestore) ───
+  const viewProductDetail = useCallback(
+    async (product: Product) => {
+      // Show immediately with cached data
+      setDetailProduct(product);
+      // Then silently refresh with latest Firestore data (for wishlist count etc.)
+      try {
+        const snap = await getDoc(doc(db, "products", product.id));
+        if (snap.exists()) {
+          setDetailProduct({ id: snap.id, ...snap.data() } as Product);
+        }
+      } catch {
+        // Silently keep cached data if refresh fails
+      }
+    },
+    []
+  );
 
   return {
     // Data
@@ -284,6 +314,7 @@ export function useProducts(showToast: (msg: string, type: "success" | "error") 
     // Detail
     detailProduct,
     setDetailProduct,
+    viewProductDetail,
     // Seed
     seeding,
     seedProducts,

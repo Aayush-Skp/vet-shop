@@ -85,18 +85,40 @@ export default function ProductFormModal({
               <div className="bg-amber-50 text-amber-700 text-sm px-4 py-2.5 rounded-lg">Discount: {Math.round(((Number(formData.originalPrice) - Number(formData.price)) / Number(formData.originalPrice)) * 100)}% OFF</div>
             )}
 
-            {/* Rating + Stock */}
+            {/* Rating */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Rating (0-5)</label>
+              <input type="number" min="0" max="5" step="0.1" value={formData.rating} onChange={(e) => setFormData((p) => ({ ...p, rating: e.target.value }))} className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-sm ${formErrors.rating ? "border-red-300" : "border-gray-300"}`} placeholder="4.5" />
+              {formErrors.rating && <p className="text-red-500 text-xs mt-1">{formErrors.rating}</p>}
+            </div>
+
+            {/* Highlight */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Highlight <span className="text-gray-400 text-xs font-normal">(optional)</span></label>
+              <input type="text" value={formData.highlight} onChange={(e) => setFormData((p) => ({ ...p, highlight: e.target.value }))} className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-sm" placeholder="e.g., Vet Recommended, Best Seller, New Arrival" />
+            </div>
+
+            {/* Disclaimer */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Disclaimer <span className="text-gray-400 text-xs font-normal">(optional)</span></label>
+              <textarea value={formData.disclaimer} onChange={(e) => setFormData((p) => ({ ...p, disclaimer: e.target.value }))} rows={2} className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-sm resize-none" placeholder="e.g., Consult your vet before use. Not for kittens under 6 months." />
+            </div>
+
+            {/* Toggles: Stock + On Sale */}
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Rating (0-5)</label>
-                <input type="number" min="0" max="5" step="0.1" value={formData.rating} onChange={(e) => setFormData((p) => ({ ...p, rating: e.target.value }))} className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-sm ${formErrors.rating ? "border-red-300" : "border-gray-300"}`} placeholder="4.5" />
-                {formErrors.rating && <p className="text-red-500 text-xs mt-1">{formErrors.rating}</p>}
-              </div>
-              <div className="flex items-end pb-1">
-                <label className="flex items-center gap-2.5 cursor-pointer">
-                  <input type="checkbox" checked={formData.inStock} onChange={(e) => setFormData((p) => ({ ...p, inStock: e.target.checked }))} className="w-4 h-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500" />
-                  <span className="text-sm font-medium text-gray-700">In Stock</span>
+              <div className="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" checked={formData.inStock} onChange={(e) => setFormData((p) => ({ ...p, inStock: e.target.checked }))} className="sr-only peer" />
+                  <div className="w-9 h-5 bg-gray-300 peer-focus:ring-2 peer-focus:ring-teal-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-teal-600"></div>
                 </label>
+                <span className="text-sm font-medium text-gray-700">In Stock</span>
+              </div>
+              <div className="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" checked={formData.onSale} onChange={(e) => setFormData((p) => ({ ...p, onSale: e.target.checked }))} className="sr-only peer" />
+                  <div className="w-9 h-5 bg-gray-300 peer-focus:ring-2 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-500"></div>
+                </label>
+                <span className="text-sm font-medium text-gray-700">On Sale</span>
               </div>
             </div>
 

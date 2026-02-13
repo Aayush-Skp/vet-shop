@@ -111,7 +111,7 @@ export default function AdminDashboard() {
             seedProducts={productsHook.seedProducts}
             openAddForm={productsHook.openAddForm}
             openEditForm={productsHook.openEditForm}
-            setDetailProduct={productsHook.setDetailProduct}
+            viewProductDetail={productsHook.viewProductDetail}
             setDeleteTarget={productsHook.setDeleteTarget}
           />
         )}

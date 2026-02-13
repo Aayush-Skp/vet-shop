@@ -19,4 +19,7 @@ export const DEFAULT_FORM: ProductFormData = {
   rating: "",
   category: CATEGORIES[0],
   inStock: true,
+  onSale: false,
+  highlight: "",
+  disclaimer: "",
 };

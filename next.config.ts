@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/", destination: "/index.html" },
       { source: "/products", destination: "/products.html" },
+      { source: "/product/:id", destination: "/product-detail.html" },
     ];
   },
 };

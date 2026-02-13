@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse all pet products at Curavet - Quality pet food, accessories, and medications.">
-  <title>Our Products | Curavet Pet Clinic</title>
+  <meta name="description" content="Product details at Curavet Pet Clinic">
+  <title>Product Details | Curavet Pet Clinic</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 
-<body class="page-products">
+<body class="page-product-detail">
   <!-- Navbar -->
   <nav class="navbar navbar--scrolled" id="navbar" role="navigation">
     <div class="container">
@@ -31,33 +31,67 @@
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <header class="page-header">
+  <!-- Breadcrumb -->
+  <div class="pd-breadcrumb">
     <div class="container">
-      <h1 class="page-header__title">Our Products</h1>
-      <p class="page-header__subtitle">Quality pet supplies for your furry friends</p>
+      <a href="/">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <a href="/products">Products</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span data-pd-breadcrumb-name>Product</span>
     </div>
-  </header>
+  </div>
 
-  <!-- Products Section with Search -->
-  <main class="section products-page">
+  <!-- Product Detail Content -->
+  <main class="pd-main">
     <div class="container">
-      <div class="products-page__toolbar">
-        <div class="products-page__search-wrap">
-          <svg class="products-page__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M21 21l-4.35-4.35"/>
-          </svg>
-          <input type="search" class="products-page__search" placeholder="Search products by name or category..."
-            aria-label="Search products" data-products-search />
-        </div>
-        <p class="products-page__count" data-products-count>Showing all products</p>
+      <!-- Loading State -->
+      <div class="pd-loading" data-pd-loading>
+        <div class="pd-loading__spinner"></div>
+        <p>Loading product details...</p>
       </div>
 
-      <div class="products-page__grid" data-products-grid></div>
+      <!-- Error State -->
+      <div class="pd-error" data-pd-error hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 8v4m0 4h.01"/>
+        </svg>
+        <h2>Product Not Found</h2>
+        <p>The product you're looking for doesn't exist or has been removed.</p>
+        <a href="/products" class="btn btn--primary">Browse All Products</a>
+      </div>
 
-      <div class="products-page__empty" data-products-empty hidden>
-        <p>No products match your search. Try a different term.</p>
+      <!-- Product Content (hidden until loaded) -->
+      <div class="pd-content" data-pd-content hidden>
+        <div class="pd-layout">
+          <!-- Image Section -->
+          <div class="pd-image-section">
+            <div class="pd-image-wrap" data-pd-image-wrap>
+              <img src="" alt="" class="pd-image" data-pd-image />
+              <div class="pd-image-badges" data-pd-image-badges></div>
+            </div>
+          </div>
+
+          <!-- Info Section -->
+          <div class="pd-info">
+            <div class="pd-meta" data-pd-meta></div>
+            <h1 class="pd-title" data-pd-title></h1>
+            <p class="pd-description" data-pd-description></p>
+
+            <div class="pd-rating" data-pd-rating></div>
+
+            <div class="pd-pricing" data-pd-pricing></div>
+
+            <div class="pd-stock" data-pd-stock></div>
+
+            <div class="pd-actions" data-pd-actions></div>
+
+            <div class="pd-disclaimer" data-pd-disclaimer hidden></div>
+
+            <div class="pd-details-grid" data-pd-details></div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -100,7 +134,7 @@
           referrerpolicy="no-referrer-when-downgrade" title="Curavet Pet Clinic location" data-map-embed></iframe>
       </div>
       <div class="footer__bottom">
-        <p>© Curavet Pvt. Ltd. – All Rights Reserved</p>
+        <p>&copy; Curavet Pvt. Ltd. &ndash; All Rights Reserved</p>
       </div>
     </div>
   </footer>
@@ -108,8 +142,7 @@
   <script src="/models/clinic.model.js"></script>
   <script src="/models/navigation.model.js"></script>
   <script src="/models/products.model.js"></script>
-  <script src="/js/product-detail.js"></script>
-  <script src="/controllers/products-page.controller.js"></script>
+  <script src="/controllers/product-detail.controller.js"></script>
   <script src="/controllers/ui.controller.js"></script>
 </body>
 
